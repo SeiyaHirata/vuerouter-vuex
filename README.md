@@ -28,3 +28,13 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### VSCODEで自動フォーマットを使い方
+
+下記二つのプラグインをインストールしてください。
+
+https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
+
+https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode
+
+`.vscode/setting.json`でeslintの設定にあわせて保存時にフォーマットされるようにしています。
