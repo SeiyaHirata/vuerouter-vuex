@@ -1,0 +1,18 @@
+{
+    "name": "vuerouter-vuex",
+    "dockerComposeFile": [
+        "docker-compose.yaml"
+    ],
+    "workspaceFolder": "/app",
+    "service": "vuerouter-vuex",
+    "settings": {
+        "terminal.integrated.shell.linux": null
+    },
+    "extensions": [
+		"octref.vetur",
+		"mhutchie.git-graph",
+		"esbenp.prettier-vscode",
+		"dbaeumer.vscode-eslint"
+	],
+    "shutdownAction": "stopCompose"
+}
