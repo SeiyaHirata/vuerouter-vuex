@@ -1,4 +1,8 @@
-# vuerouter-vuex
+# VueRouter、Vuex、Vuetifyの環境テンプレ
+
+Dockerをお使いの方はdevcontainerで起動も可能です。
+
+https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers
 
 ## Project setup
 ```
@@ -9,6 +13,8 @@ npm install
 ```
 npm run serve
 ```
+
+VSCODEの方はターミナルに表示されたURLをクリック
 
 ### Compiles and minifies for production
 ```
