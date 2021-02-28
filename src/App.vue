@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <Sidebar />
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
@@ -22,15 +23,7 @@
       </div>
 
       <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <v-app-bar-nav-icon @click="switchSideBar"></v-app-bar-nav-icon>
     </v-app-bar>
 
     <v-main>
@@ -40,11 +33,19 @@
 </template>
 
 <script>
+import Sidebar from "@/components/Sidebar.vue";
+
 export default {
   name: "App",
-  components: {},
-  data: () => ({
-    //
-  })
+  components: { Sidebar },
+  data() {
+    return {};
+  },
+  methods: {
+    switchSideBar() {
+      const isOpenSideBar = this.$store.state.isOpenSideBar;
+      this.$store.dispatch("switchSideBar", !isOpenSideBar);
+    }
+  }
 };
 </script>
