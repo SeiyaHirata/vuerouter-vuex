@@ -21,9 +21,11 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item>
+          <v-list-item v-for="(event, index) in events" :key="index">
             <v-list-item-content>
-              <v-list-item-title>アイテム</v-list-item-title>
+              <v-list-item-title
+                >{{ event.taskNo }}: {{ event.name }}</v-list-item-title
+              >
             </v-list-item-content>
           </v-list-item>
           <v-divider></v-divider>
@@ -45,6 +47,11 @@ export default {
       },
       set(value) {
         this.$store.dispatch("switchSideBar", value);
+      }
+    },
+    events: {
+      get() {
+        return this.$store.state.event.events;
       }
     }
   },
