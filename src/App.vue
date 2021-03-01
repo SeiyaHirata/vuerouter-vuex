@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <CreateTaskDialog />
     <Sidebar />
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
@@ -34,10 +35,11 @@
 
 <script>
 import Sidebar from "@/components/Sidebar.vue";
+import CreateTaskDialog from "@/components/CreateTaskDialog.vue";
 
 export default {
   name: "App",
-  components: { Sidebar },
+  components: { Sidebar, CreateTaskDialog },
   data() {
     return {};
   },

@@ -7,6 +7,17 @@
       <v-btn icon class="ma-2" @click="$refs.calendar.next()">
         <v-icon>mdi-chevron-right</v-icon>
       </v-btn>
+      <v-btn
+        color="primary"
+        fab
+        dense
+        small
+        class="ma-2"
+        @click="switchCreateTaskDialog(true)"
+      >
+        <v-icon>mdi-plus</v-icon>
+      </v-btn>
+      <v-spacer></v-spacer>
       <v-select
         v-model="type"
         :items="types"
@@ -16,7 +27,6 @@
         class="ma-2"
         label="type"
       ></v-select>
-      <v-spacer></v-spacer>
     </v-sheet>
     <v-sheet height="600">
       <v-calendar
@@ -46,6 +56,11 @@ export default {
       get() {
         return this.$store.state.event.events;
       }
+    }
+  },
+  methods: {
+    switchCreateTaskDialog(value) {
+      this.$store.dispatch("switchCreateTaskDialog", value);
     }
   }
 };
