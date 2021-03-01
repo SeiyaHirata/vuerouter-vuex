@@ -1,10 +1,15 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
+import { event } from "@/store/event.js";
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  modules: {},
+  // modulesには他ファイルなどでstoreを定義した時に使用
+  modules: {
+    event
+  },
   // stateは参照専用、直接変更はNG
   state: {
     isOpenSideBar: true
