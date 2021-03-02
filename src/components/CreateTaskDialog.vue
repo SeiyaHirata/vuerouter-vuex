@@ -112,7 +112,7 @@
           <v-btn color="red darken-1" text @click="closeDialog">
             閉じる
           </v-btn>
-          <v-btn color="blue darken-1" text>
+          <v-btn color="blue darken-1" text @click="createEvent">
             作成
           </v-btn>
         </v-card-actions>
@@ -167,6 +167,19 @@ export default {
       this.endDate = "";
       this.eventDetail = "";
       this.$store.dispatch("switchCreateTaskDialog", false);
+    },
+    createEvent() {
+      const payload = {
+        taskNo: this.$store.state.event.events.length + 1,
+        name: this.eventName,
+        start: this.startDate,
+        end: this.endDate,
+        color: this.eventLabelColor,
+        detail: this.eventDeteil,
+        timed: false
+      };
+      this.$store.dispatch("createEvent", payload);
+      this.closeDialog();
     }
   }
 };

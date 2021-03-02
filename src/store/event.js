@@ -21,5 +21,15 @@ export const event = {
         timed: false
       }
     ]
+  },
+  mutations: {
+    updateEvents(state, value) {
+      state.events.push(value);
+    }
+  },
+  actions: {
+    createEvent({ commit }, payload) {
+      commit("updateEvents", payload);
+    }
   }
 };
