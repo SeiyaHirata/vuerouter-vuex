@@ -112,7 +112,12 @@
           <v-btn color="red darken-1" text @click="closeDialog">
             閉じる
           </v-btn>
-          <v-btn color="blue darken-1" text @click="createEvent">
+          <v-btn
+            color="blue darken-1"
+            text
+            @click="createEvent"
+            :disabled="inputCheck"
+          >
             作成
           </v-btn>
         </v-card-actions>
@@ -157,6 +162,11 @@ export default {
     eventLabelColor: {
       get() {
         return this.colors[this.selectColorNo];
+      }
+    },
+    inputCheck: {
+      get() {
+        return !this.eventName || !this.startDate || !this.endDate;
       }
     }
   },
