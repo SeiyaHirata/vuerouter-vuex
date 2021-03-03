@@ -105,8 +105,6 @@
           </v-container>
         </v-card-text>
 
-        <pre>{{ $data }}</pre>
-
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="red darken-1" text @click="closeDialog">

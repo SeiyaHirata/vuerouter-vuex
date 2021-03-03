@@ -35,6 +35,7 @@
         :type="type"
         :events="events"
         :event-overlap-threshold="30"
+        @click:event="toEventPage"
       ></v-calendar>
     </v-sheet>
   </div>
@@ -61,6 +62,9 @@ export default {
   methods: {
     switchCreateTaskDialog(value) {
       this.$store.dispatch("switchCreateTaskDialog", value);
+    },
+    toEventPage(value) {
+      this.$router.push(`/event/${value.event.taskNo}`);
     }
   }
 };

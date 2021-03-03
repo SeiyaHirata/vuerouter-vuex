@@ -21,7 +21,11 @@
             </v-list-item-content>
           </v-list-item>
 
-          <v-list-item v-for="(event, index) in events" :key="index">
+          <v-list-item
+            v-for="(event, index) in events"
+            :key="index"
+            @click="toEventPage(event.taskNo)"
+          >
             <v-list-item-content>
               <v-list-item-title
                 >{{ event.taskNo }}: {{ event.name }}</v-list-item-title
@@ -58,6 +62,9 @@ export default {
   methods: {
     switchCreateTaskDialog(value) {
       this.$store.dispatch("switchCreateTaskDialog", value);
+    },
+    toEventPage(taskNo) {
+      this.$router.push(`/event/${taskNo}`);
     }
   }
 };
