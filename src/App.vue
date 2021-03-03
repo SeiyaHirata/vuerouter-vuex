@@ -24,6 +24,12 @@
       </div>
 
       <v-spacer></v-spacer>
+      <v-btn icon @click="switchDark">
+        <!-- アイコンサイト https://pictogrammers.github.io/@mdi/font/2.0.46/ -->
+        <v-icon>{{
+          isDark ? "mdi-weather-night" : "mdi-weather-sunny"
+        }}</v-icon>
+      </v-btn>
       <v-app-bar-nav-icon @click="switchSideBar"></v-app-bar-nav-icon>
     </v-app-bar>
 
@@ -43,10 +49,23 @@ export default {
   data() {
     return {};
   },
+  mounted() {
+    console.log(this.$vuetify);
+  },
+  computed: {
+    isDark: {
+      get() {
+        return this.$vuetify.theme.dark;
+      }
+    }
+  },
   methods: {
     switchSideBar() {
       const isOpenSideBar = this.$store.state.isOpenSideBar;
       this.$store.dispatch("switchSideBar", !isOpenSideBar);
+    },
+    switchDark() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
     }
   }
 };
