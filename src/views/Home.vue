@@ -52,6 +52,9 @@ export default {
       value: ""
     };
   },
+  async created() {
+    this.$store.dispatch("event/getEventAll");
+  },
   computed: {
     events: {
       get() {
