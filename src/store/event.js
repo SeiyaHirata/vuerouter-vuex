@@ -1,15 +1,11 @@
-import { getEventAll } from "@/service/event";
+import { getEventAll, getEvent } from "@/service/event";
 
 export const event = {
   namespaced: true,
   state: {
     events: [],
+    event: {},
     isLoading: false
-  },
-  getters: {
-    event: state => id => {
-      return state.events.find(value => value.id == id);
-    }
   },
   mutations: {
     updateEventsAll(state, value) {
@@ -17,6 +13,9 @@ export const event = {
     },
     updateEvents(state, value) {
       state.events.push(value);
+    },
+    updateEvent(state, value) {
+      state.event = value;
     },
     updateIsLoading(state, value) {
       state.isLoading = value;
@@ -32,6 +31,18 @@ export const event = {
       } catch (error) {
         alert("エラーが発生しました");
         commit("updateEventsAll", []);
+      } finally {
+        commit("updateIsLoading", false);
+      }
+    },
+    async getEvent({ commit }, payload) {
+      try {
+        commit("updateIsLoading", true);
+        const response = await getEvent(payload);
+        commit("updateEvent", response.data);
+      } catch (error) {
+        commit("updateEvent", {});
+        alert("エラーが発生しました");
       } finally {
         commit("updateIsLoading", false);
       }

@@ -1,6 +1,9 @@
 <template>
   <div>
-    <v-card class="mx-auto mt-5" max-width="344">
+    <v-overlay v-if="isLoading">
+      <v-progress-circular indeterminate size="64"></v-progress-circular>
+    </v-overlay>
+    <v-card class="mx-auto mt-5" max-width="344" v-else>
       <v-list-item three-line>
         <v-list-item-content>
           <v-list-item-title class="headline mb-1">
@@ -25,10 +28,19 @@
 export default {
   name: "Event",
   components: {},
+  async created() {
+    const id = this.$route.params["id"];
+    this.$store.dispatch("event/getEvent", id);
+  },
   computed: {
     event: {
       get() {
-        return this.$store.getters["event/event"](this.$route.params["id"]);
+        return this.$store.state.event.event;
+      }
+    },
+    isLoading: {
+      get() {
+        return this.$store.state.event.isLoading;
       }
     }
   }
