@@ -1,9 +1,9 @@
 export const event = {
-  namespace: true,
+  namespaced: true,
   state: {
     events: [
       {
-        taskNo: 1,
+        eventNo: 1,
         name: "Vue&TS勉強会",
         start: "2021-03-21",
         end: "2021-03-21",
@@ -12,7 +12,7 @@ export const event = {
         timed: false
       },
       {
-        taskNo: 2,
+        eventNo: 2,
         name: "Vue.js応用勉強会",
         start: "2021-03-07",
         end: "2021-03-07",
@@ -23,8 +23,8 @@ export const event = {
     ]
   },
   getters: {
-    event: state => taskNo => {
-      return state.events.find(value => value.taskNo == taskNo);
+    event: state => eventNo => {
+      return state.events.find(value => value.eventNo == eventNo);
     }
   },
   mutations: {

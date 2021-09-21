@@ -64,7 +64,7 @@ export default {
       this.$store.dispatch("switchCreateTaskDialog", value);
     },
     toEventPage(value) {
-      this.$router.push(`/event/${value.event.taskNo}`);
+      this.$router.push(`/event/${value.event.eventNo}`);
     }
   }
 };

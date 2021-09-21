@@ -178,7 +178,7 @@ export default {
     },
     createEvent() {
       const payload = {
-        taskNo: this.$store.state.event.events.length + 1,
+        eventNo: this.$store.state.event.events.length + 1,
         name: this.eventName,
         start: this.startDate,
         end: this.endDate,
@@ -186,7 +186,7 @@ export default {
         detail: this.eventDeteil,
         timed: false
       };
-      this.$store.dispatch("createEvent", payload);
+      this.$store.dispatch("event/createEvent", payload);
       this.closeDialog();
     }
   }

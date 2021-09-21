@@ -28,7 +28,9 @@ export default {
   computed: {
     event: {
       get() {
-        return this.$store.getters.event(this.$route.params["eventNo"]);
+        return this.$store.getters["event/event"](
+          this.$route.params["eventNo"]
+        );
       }
     }
   }
