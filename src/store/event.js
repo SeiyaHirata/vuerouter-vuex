@@ -1,4 +1,4 @@
-import { getEventAll, getEvent } from "@/service/event";
+import { getEventAll, getEvent, createEvent } from "@/service/event";
 
 export const event = {
   namespaced: true,
@@ -47,8 +47,17 @@ export const event = {
         commit("updateIsLoading", false);
       }
     },
-    createEvent({ commit }, payload) {
-      commit("updateEvents", payload);
+    async createEvent({ commit }, payload) {
+      try {
+        commit("updateIsLoading", true);
+        const response = await createEvent(payload);
+        commit("updateEvents", response.data);
+        alert("イベントを作成しました！");
+      } catch (error) {
+        alert("エラーが発生しました");
+      } finally {
+        commit("updateIsLoading", false);
+      }
     }
   }
 };
