@@ -12,7 +12,7 @@
       <!-- https://vuetifyjs.com/ja/components/list-item-groups/ -->
       <v-list-item-group color="primary">
         <v-list rounded>
-          <v-list-item @click="switchCreateTaskDialog(true)">
+          <v-list-item @click="switchCreateEventDialog(true)">
             <v-list-item-content>
               <v-list-item-title>
                 <v-icon>mdi-plus</v-icon>
@@ -60,8 +60,8 @@ export default {
     }
   },
   methods: {
-    switchCreateTaskDialog(value) {
-      this.$store.dispatch("switchCreateTaskDialog", value);
+    switchCreateEventDialog(value) {
+      this.$store.dispatch("switchCreateEventDialog", value);
     },
     toEventPage(eventNo) {
       this.$router.push(`/event/${eventNo}`);

@@ -13,7 +13,7 @@
         dense
         small
         class="ma-2"
-        @click="switchCreateTaskDialog(true)"
+        @click="switchCreateEventDialog(true)"
       >
         <v-icon>mdi-plus</v-icon>
       </v-btn>
@@ -60,8 +60,8 @@ export default {
     }
   },
   methods: {
-    switchCreateTaskDialog(value) {
-      this.$store.dispatch("switchCreateTaskDialog", value);
+    switchCreateEventDialog(value) {
+      this.$store.dispatch("switchCreateEventDialog", value);
     },
     toEventPage(value) {
       this.$router.push(`/event/${value.event.eventNo}`);
