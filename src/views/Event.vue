@@ -34,7 +34,8 @@ export default {
   components: {},
   async created() {
     const id = this.$route.params["id"];
-    this.$store.dispatch("event/getEvent", id);
+    await this.$store.dispatch("event/getEvent", id);
+    this.$store.dispatch("event/getEventAll");
   },
   computed: {
     event: {
