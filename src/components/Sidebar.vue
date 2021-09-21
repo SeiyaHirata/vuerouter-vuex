@@ -24,11 +24,11 @@
           <v-list-item
             v-for="(event, index) in events"
             :key="index"
-            @click="toEventPage(event.eventNo)"
+            @click="toEventPage(event.id)"
           >
             <v-list-item-content>
               <v-list-item-title
-                >{{ event.eventNo }}: {{ event.name }}</v-list-item-title
+                >{{ event.id }}: {{ event.name }}</v-list-item-title
               >
             </v-list-item-content>
           </v-list-item>
@@ -63,8 +63,8 @@ export default {
     switchCreateEventDialog(value) {
       this.$store.dispatch("switchCreateEventDialog", value);
     },
-    toEventPage(eventNo) {
-      this.$router.push(`/event/${eventNo}`);
+    toEventPage(id) {
+      this.$router.push(`/event/${id}`);
     }
   }
 };

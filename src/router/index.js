@@ -12,7 +12,7 @@ const routes = [
     component: Home
   },
   {
-    path: "/event/:eventNo", // 動的URL
+    path: "/event/:id", // 動的URL
     name: "Event",
     component: Event
   }

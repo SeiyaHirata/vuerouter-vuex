@@ -67,7 +67,7 @@ export default {
       this.$store.dispatch("switchCreateEventDialog", value);
     },
     toEventPage(value) {
-      this.$router.push(`/event/${value.event.eventNo}`);
+      this.$router.push(`/event/${value.event.id}`);
     }
   }
 };

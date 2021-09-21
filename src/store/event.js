@@ -6,8 +6,8 @@ export const event = {
     events: []
   },
   getters: {
-    event: state => eventNo => {
-      return state.events.find(value => value.eventNo == eventNo);
+    event: state => id => {
+      return state.events.find(value => value.id == id);
     }
   },
   mutations: {
