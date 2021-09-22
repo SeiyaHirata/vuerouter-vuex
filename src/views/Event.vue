@@ -4,6 +4,13 @@
       <v-progress-circular indeterminate size="64"></v-progress-circular>
     </v-overlay>
     <v-card class="mx-auto mt-5" max-width="344" v-else>
+      <EditEventDialog
+        :name="event.name"
+        :detail="event.detail"
+        :color="event.color"
+        :start="event.start"
+        :end="event.end"
+      />
       <v-card-text>
         <p class="display-1 text--primary">
           {{ event.name }}
@@ -22,6 +29,17 @@
         <v-chip class="ma-2 white--text" :color="event.color">
           {{ event.color }}
         </v-chip>
+        <v-btn
+          color="primary"
+          fab
+          dense
+          small
+          outlined
+          class="ma-2"
+          @click="switchEditEventDialog(true)"
+        >
+          <v-icon>mdi-grease-pencil</v-icon>
+        </v-btn>
         <v-btn
           color="red"
           fab
@@ -55,9 +73,10 @@
 </template>
 
 <script>
+import EditEventDialog from "@/components/EditEventDialog.vue";
 export default {
   name: "Event",
-  components: {},
+  components: { EditEventDialog },
   data() {
     return {
       deleteConfirmDialog: false
@@ -85,6 +104,9 @@ export default {
       const id = this.$route.params["id"];
       await this.$store.dispatch("event/deleteEvent", id);
       this.$router.push("/");
+    },
+    switchEditEventDialog(value) {
+      this.$store.dispatch("switchEditEventDialog", value);
     }
   }
 };

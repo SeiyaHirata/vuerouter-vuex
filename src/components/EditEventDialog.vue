@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-dialog v-model="createEventDialog" persistent max-width="600px">
+    <v-dialog v-model="editEventDialog" persistent max-width="600px">
       <v-card>
         <v-card-title>
           <span class="headline">予定を追加</span>
@@ -104,7 +104,6 @@
             </v-row>
           </v-container>
         </v-card-text>
-
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="red darken-1" text @click="closeDialog">
@@ -113,10 +112,10 @@
           <v-btn
             color="blue darken-1"
             text
-            @click="createEvent"
+            @click="editEvent"
             :disabled="inputCheck"
           >
-            作成
+            更新
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -125,33 +124,58 @@
 </template>
 
 <script>
+const colors = [
+  "blue",
+  "indigo",
+  "deep-purple",
+  "cyan",
+  "green",
+  "orange",
+  "grey darken-1",
+  "red"
+];
+
 export default {
-  name: "CreateEventDialog",
+  name: "EditEventDialog",
+  props: {
+    name: {
+      type: String,
+      required: true
+    },
+    detail: {
+      type: String,
+      required: false,
+      default: ""
+    },
+    color: {
+      type: String,
+      required: true
+    },
+    start: {
+      type: String,
+      required: true
+    },
+    end: {
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
-      eventName: "",
-      eventDetail: "",
-      selectColorNo: 0,
-      startDate: "",
-      endDate: "",
+      eventName: this.name,
+      eventDetail: this.detail,
+      startDate: this.start,
+      endDate: this.end,
       startMenu: false,
       endMenu: false,
-      colors: [
-        "blue",
-        "indigo",
-        "deep-purple",
-        "cyan",
-        "green",
-        "orange",
-        "grey darken-1",
-        "red"
-      ]
+      colors,
+      selectColorNo: colors.indexOf(this.color)
     };
   },
   computed: {
-    createEventDialog: {
+    editEventDialog: {
       get() {
-        return this.$store.state.createEventDialog;
+        return this.$store.state.editEventDialog;
       },
       set(value) {
         this.$store.dispatch("switchCreateEventDialog", value);
@@ -166,28 +190,37 @@ export default {
       get() {
         return !this.eventName || !this.startDate || !this.endDate;
       }
+    },
+    event: {
+      get() {
+        return this.$store.state.event.event;
+      }
     }
   },
   methods: {
     closeDialog() {
-      this.eventName = "";
-      this.startDate = "";
-      this.endDate = "";
-      this.eventDetail = "";
-      this.$store.dispatch("switchCreateEventDialog", false);
+      this.$store.dispatch("switchEditEventDialog", false);
+      this.eventName = this.name;
+      this.eventDetail = this.detail;
+      this.selectColorNo = colors.indexOf(this.color);
+      this.startDate = this.start;
+      this.endDate = this.end;
     },
-    createEvent() {
-      const payload = {
+    async editEvent() {
+      const id = this.$route.params["id"];
+      const eventData = {
         name: this.eventName,
         start: this.startDate,
         end: this.endDate,
         color: this.eventLabelColor,
-        detail: this.eventDeteil,
+        detail: this.eventDetail,
         timed: false
       };
-      this.$store.dispatch("event/createEvent", payload);
-      this.closeDialog();
+      await this.$store.dispatch("event/editEvent", { id, eventData });
+      this.$store.commit("switchEditEventDialog", false);
     }
   }
 };
 </script>
+
+<style></style>

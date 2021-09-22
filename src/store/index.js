@@ -13,7 +13,8 @@ export default new Vuex.Store({
   // stateは参照専用、直接変更はNG
   state: {
     isOpenSideBar: true,
-    createEventDialog: false
+    createEventDialog: false,
+    editEventDialog: false
   },
   // mutationsはstateを変更のみを行う
   mutations: {
@@ -22,6 +23,9 @@ export default new Vuex.Store({
     },
     updateCreateEventDialog(state, value) {
       state.createEventDialog = value;
+    },
+    switchEditEventDialog(state, value) {
+      state.editEventDialog = value;
     }
   },
   actions: {
@@ -31,6 +35,9 @@ export default new Vuex.Store({
     },
     switchCreateEventDialog({ commit }, payload) {
       commit("updateCreateEventDialog", payload);
+    },
+    switchEditEventDialog({ commit }, payload) {
+      commit("switchEditEventDialog", payload);
     }
   }
 });
