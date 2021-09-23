@@ -22,8 +22,34 @@
         <v-chip class="ma-2 white--text" :color="event.color">
           {{ event.color }}
         </v-chip>
+        <v-btn
+          color="red"
+          fab
+          dense
+          small
+          outlined
+          class="ma-2"
+          @click="deleteConfirmDialog = true"
+        >
+          <v-icon>mdi-delete</v-icon>
+        </v-btn>
         <router-link to="/">ホームに戻る</router-link>
       </v-card-actions>
+      <v-dialog v-model="deleteConfirmDialog" max-width="400">
+        <v-card>
+          <v-card-title>
+            <div>本当に削除してよろしいですか？</div>
+          </v-card-title>
+
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn text @click="deleteConfirmDialog = false">
+              閉じる
+            </v-btn>
+            <v-btn @click="deleteEvent" text color="red darken-1">削除</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-card>
   </div>
 </template>
@@ -32,6 +58,11 @@
 export default {
   name: "Event",
   components: {},
+  data() {
+    return {
+      deleteConfirmDialog: false
+    };
+  },
   async created() {
     const id = this.$route.params["id"];
     await this.$store.dispatch("event/getEvent", id);
@@ -47,6 +78,13 @@ export default {
       get() {
         return this.$store.state.event.isLoading;
       }
+    }
+  },
+  methods: {
+    async deleteEvent() {
+      const id = this.$route.params["id"];
+      await this.$store.dispatch("event/deleteEvent", id);
+      this.$router.push("/");
     }
   }
 };
