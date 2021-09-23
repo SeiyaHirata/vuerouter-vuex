@@ -63,8 +63,9 @@ export default {
     switchCreateEventDialog(value) {
       this.$store.dispatch("switchCreateEventDialog", value);
     },
-    toEventPage(id) {
+    async toEventPage(id) {
       this.$router.push(`/event/${id}`);
+      this.$store.dispatch("event/getEvent", id);
     }
   }
 };

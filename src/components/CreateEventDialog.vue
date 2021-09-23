@@ -182,7 +182,7 @@ export default {
         start: this.startDate,
         end: this.endDate,
         color: this.eventLabelColor,
-        detail: this.eventDeteil,
+        detail: this.eventDetail,
         timed: false
       };
       this.$store.dispatch("event/createEvent", payload);
