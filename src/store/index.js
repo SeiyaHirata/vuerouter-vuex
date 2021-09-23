@@ -13,15 +13,15 @@ export default new Vuex.Store({
   // stateは参照専用、直接変更はNG
   state: {
     isOpenSideBar: true,
-    createTaskDialog: false
+    createEventDialog: false
   },
   // mutationsはstateを変更のみを行う
   mutations: {
     updateIsOpenSideBar(state, value) {
       state.isOpenSideBar = value;
     },
-    updateCreateTaskDialog(state, value) {
-      state.createTaskDialog = value;
+    updateCreateEventDialog(state, value) {
+      state.createEventDialog = value;
     }
   },
   actions: {
@@ -29,8 +29,8 @@ export default new Vuex.Store({
       // commit("mutations名", 引数)でmutations名を実行できる
       commit("updateIsOpenSideBar", payload);
     },
-    switchCreateTaskDialog({ commit }, payload) {
-      commit("updateCreateTaskDialog", payload);
+    switchCreateEventDialog({ commit }, payload) {
+      commit("updateCreateEventDialog", payload);
     }
   }
 });

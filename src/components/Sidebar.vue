@@ -12,7 +12,7 @@
       <!-- https://vuetifyjs.com/ja/components/list-item-groups/ -->
       <v-list-item-group color="primary">
         <v-list rounded>
-          <v-list-item @click="switchCreateTaskDialog(true)">
+          <v-list-item @click="switchCreateEventDialog(true)">
             <v-list-item-content>
               <v-list-item-title>
                 <v-icon>mdi-plus</v-icon>
@@ -24,11 +24,11 @@
           <v-list-item
             v-for="(event, index) in events"
             :key="index"
-            @click="toEventPage(event.eventNo)"
+            @click="toEventPage(event.id)"
           >
             <v-list-item-content>
               <v-list-item-title
-                >{{ event.eventNo }}: {{ event.name }}</v-list-item-title
+                >{{ event.id }}: {{ event.name }}</v-list-item-title
               >
             </v-list-item-content>
           </v-list-item>
@@ -60,11 +60,11 @@ export default {
     }
   },
   methods: {
-    switchCreateTaskDialog(value) {
-      this.$store.dispatch("switchCreateTaskDialog", value);
+    switchCreateEventDialog(value) {
+      this.$store.dispatch("switchCreateEventDialog", value);
     },
-    toEventPage(eventNo) {
-      this.$router.push(`/event/${eventNo}`);
+    toEventPage(id) {
+      this.$router.push(`/event/${id}`);
     }
   }
 };

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <CreateTaskDialog />
+    <CreateEventDialog />
     <Sidebar />
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
@@ -41,11 +41,11 @@
 
 <script>
 import Sidebar from "@/components/Sidebar.vue";
-import CreateTaskDialog from "@/components/CreateTaskDialog.vue";
+import CreateEventDialog from "@/components/CreateEventDialog.vue";
 
 export default {
   name: "App",
-  components: { Sidebar, CreateTaskDialog },
+  components: { Sidebar, CreateEventDialog },
   data() {
     return {};
   },

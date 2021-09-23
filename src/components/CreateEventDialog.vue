@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-dialog v-model="createTaskDialog" persistent max-width="600px">
+    <v-dialog v-model="createEventDialog" persistent max-width="600px">
       <v-card>
         <v-card-title>
           <span class="headline">予定を追加</span>
@@ -126,7 +126,7 @@
 
 <script>
 export default {
-  name: "CreateTaskDialog",
+  name: "CreateEventDialog",
   data() {
     return {
       eventName: "",
@@ -149,12 +149,12 @@ export default {
     };
   },
   computed: {
-    createTaskDialog: {
+    createEventDialog: {
       get() {
-        return this.$store.state.createTaskDialog;
+        return this.$store.state.createEventDialog;
       },
       set(value) {
-        this.$store.dispatch("switchCreateTaskDialog", value);
+        this.$store.dispatch("switchCreateEventDialog", value);
       }
     },
     eventLabelColor: {
@@ -174,11 +174,10 @@ export default {
       this.startDate = "";
       this.endDate = "";
       this.eventDetail = "";
-      this.$store.dispatch("switchCreateTaskDialog", false);
+      this.$store.dispatch("switchCreateEventDialog", false);
     },
     createEvent() {
       const payload = {
-        eventNo: this.$store.state.event.events.length + 1,
         name: this.eventName,
         start: this.startDate,
         end: this.endDate,

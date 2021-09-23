@@ -1,38 +1,34 @@
+import { getEventAll } from "@/service/event";
+
 export const event = {
   namespaced: true,
   state: {
-    events: [
-      {
-        eventNo: 1,
-        name: "Vue&TS勉強会",
-        start: "2021-03-21",
-        end: "2021-03-21",
-        color: "blue",
-        detail: "詳細です詳細です",
-        timed: false
-      },
-      {
-        eventNo: 2,
-        name: "Vue.js応用勉強会",
-        start: "2021-03-07",
-        end: "2021-03-07",
-        color: "green",
-        detail: "詳細です詳細です",
-        timed: false
-      }
-    ]
+    events: []
   },
   getters: {
-    event: state => eventNo => {
-      return state.events.find(value => value.eventNo == eventNo);
+    event: state => id => {
+      return state.events.find(value => value.id == id);
     }
   },
   mutations: {
+    updateEventsAll(state, value) {
+      state.events = value;
+    },
     updateEvents(state, value) {
       state.events.push(value);
     }
   },
   actions: {
+    // イベント一覧取得
+    async getEventAll({ commit }) {
+      try {
+        const response = await getEventAll();
+        commit("updateEventsAll", response.data);
+      } catch (error) {
+        alert("エラーが発生しました");
+        commit("updateEventsAll", []);
+      }
+    },
     createEvent({ commit }, payload) {
       commit("updateEvents", payload);
     }
